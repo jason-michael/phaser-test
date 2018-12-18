@@ -11,13 +11,14 @@ export default class Player {
         // STATS:
         this.shotsFired = 0;
         this.shotsHit = 0;
+        this.enemiesKilled = 0;
 
         this.sprite = game.physics.add.sprite(0, 0, 'player')
             .setMaxVelocity(500)
             .setFriction(400, 200)
             .setCollideWorldBounds(true);
 
-        this.gun = new Gun(game, this, 100);
+        this.gun = new Gun(game, this, 200);
     }
 
     update() {

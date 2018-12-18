@@ -21,7 +21,9 @@ export default class Zombie {
         .setName(index.toString())
         .setCollideWorldBounds(true)
 
-        this.sprite.setScale(1 + (this.level / 10))
+        this.sprite.setScale(1 + (this.level / 10));
+
+        console.log('zombie created')
 
     }
 
@@ -51,7 +53,8 @@ export default class Zombie {
 
     kill () {
 
-        this.game.effectManager.addCorpse(this.sprite.x, this.sprite.y)
+        this.game.effectManager.addCorpse(this.sprite.x, this.sprite.y);
+        this.player.enemiesKilled++;
         this.isAlive = false;
         this.sprite.destroy();
 
