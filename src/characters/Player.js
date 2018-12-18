@@ -17,7 +17,7 @@ export default class Player {
             .setFriction(400, 200)
             .setCollideWorldBounds(true);
 
-        this.gun = new Gun(game, this, 150);
+        this.gun = new Gun(game, this, 100);
     }
 
     update() {

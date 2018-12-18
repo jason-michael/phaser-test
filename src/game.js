@@ -43,19 +43,23 @@ let game = new Phaser.Game(config);
 
 function preload() {
 
-    // World
+    // WORLD
     this.load.image('earth', 'assets/images/tanks/scorched_earth.png');
 
-    // Characters
+    // CHARACTERS
     this.load.image('player', 'assets/images/topdown/player machinegun.gif');
     this.load.image('zombie1', 'assets/images/topdown/zombie.gif');
     this.load.image('zombie2', 'assets/images/topdown/zombie 2.gif');
 
-    // Weapons
+    // AUDIO
+    this.load.audio('gunshot', '/assets/audio/gunshot.wav');
+
+    // WEAPONS
     this.load.image('bullet', 'assets/images/tanks/bullet.png');
 
-    // Effects
+    // EFFECTS
     this.load.image('corpse', 'assets/images/blood/corpse.png');
+
 }
 
 function create() {
@@ -77,7 +81,7 @@ function create() {
     // SPAWN ENEMIES
     for (let i = 0; i < this.enemiesTotal; i++) {
 
-        this.enemies.push(new Zombie(i, Math.floor(Math.random() * 2 + 1), this, this.player));
+        this.enemies.push(new Zombie(i, Math.floor(Math.random() * 3 + 1), this, this.player));
 
         // Disabled for performance:
         // this.physics.add.overlap(this.enemies[i].zombie, this.player);
@@ -142,4 +146,5 @@ function update() {
         this.player.shotsFired,
         Math.floor((this.player.shotsHit / this.player.shotsFired) * 100)
     ]));
+
 }

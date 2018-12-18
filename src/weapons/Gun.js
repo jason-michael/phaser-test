@@ -1,4 +1,5 @@
 import InputBindings from '../input/InputBindings';
+import EffectsManager from '../effects/EffectManager';
 
 export default class Gun {
     constructor(game, player, fireRate) {
@@ -8,6 +9,7 @@ export default class Gun {
         this.nextFire = 0;
         this.bullets = this.game.physics.add.group({ defaultKey: 'bullet' });
         this.input = new InputBindings(this.game);
+        this.effects = new EffectsManager(this.game);
     }
 
     fire() {
@@ -31,6 +33,7 @@ export default class Gun {
 
             // Effects
             this.game.cameras.main.shake(100, 0.002); // duration, intensity
+            this.effects.playGunshot();
 
             // Limit spawned bullets for performance
             if (this.bullets.getChildren().length > 20) this.bullets.clear();

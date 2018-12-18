@@ -16,4 +16,10 @@ export default class EffectManager {
         let corpse = this.game.add.sprite(x, y, 'corpse').setDepth(-1);
         this.corpses.push(corpse);
     }
+
+    playGunshot() {
+
+        this.game.sound.add('gunshot').play();
+
+    }
 }
