@@ -16,9 +16,13 @@ export default class Player {
     this.sprite = game.physics.add.sprite(0, 0, 'player')
       .setMaxVelocity(500)
       .setFriction(400, 200)
-      .setCollideWorldBounds(true);
+      .setCollideWorldBounds(true)
+
+    // Tighter collision hit box
+    this.sprite.body.setSize(44, 44, 0.5);
 
     this.gun = new Gun(game, this, 200);
+
   }
 
   update() {

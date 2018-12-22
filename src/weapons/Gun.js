@@ -24,7 +24,7 @@ export default class Gun {
       let bullet = this.bullets.getFirstDead(true);
       bullet.rotation = this.player.sprite.rotation;
       bullet.displayOriginX -= 50;
-      bullet.displayOriginY -= 23;
+      // bullet.displayOriginY -= 23;
       bullet.setScale(0.5);
       bullet.setPosition(this.player.sprite.x, this.player.sprite.y);
 

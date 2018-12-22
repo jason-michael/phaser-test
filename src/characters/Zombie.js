@@ -10,7 +10,7 @@ export default class Zombie {
     this.spriteImage = (this.level % 2 === 0) ? 'zombie2' : 'zombie1';
 
     this.isAlive = true;
-    this.health = this.level * 1;
+    this.health = Math.floor(this.level * 1);
     this.speed = (Math.random() + 1) * (this.level * 20);
 
     // Get a random spawn point on the map:
@@ -22,7 +22,13 @@ export default class Zombie {
       .setCollideWorldBounds(true)
       .setDepth(0);
 
+    // Tighter collision hit box
+    let hitBoxSize = this.sprite.width * 0.66;
+    this.sprite.body.setSize(hitBoxSize, hitBoxSize, 0.5);
+
     this.sprite.setScale(1 + (this.level / 10));
+
+    this.game.physics.add.collider(this.sprite, this.player.sprite)
   }
 
   update() {

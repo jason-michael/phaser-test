@@ -34,7 +34,9 @@ export default new Phaser.Class({
     this.backgrounds = ['earth', 'lightGrass', 'darkGrass', 'sand', 'lightSand'];
 
     // CHARACTERS
-    this.load.image('player', 'assets/images/topdown/player machinegun.gif');
+    this.load.image('player', 'assets/images/topdown/player pistol.gif');
+    this.load.image('player_mg', 'assets/images/topdown/player machinegun.gif');
+
     this.load.image('zombie1', 'assets/images/topdown/zombie.gif');
     this.load.image('zombie2', 'assets/images/topdown/zombie 2.gif');
 
@@ -49,7 +51,7 @@ export default new Phaser.Class({
   },
 
   getRandomBackground: function () {
-    return this.backgrounds[ Math.floor(Math.random() * 2) ];
+    return this.backgrounds[ Math.floor(Math.random() * this.backgrounds.length) ];
   },
 
   create: function () {
@@ -103,7 +105,7 @@ export default new Phaser.Class({
       } else {
         this.isPaused = true;
         this.scene.pause();
-        this.cameras.main.setZoom(1.25);
+        this.cameras.main.setZoom(2);
         this.caption.setVisible(false);
       }
     }, this)

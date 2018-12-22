@@ -7,9 +7,10 @@ export default class TimeSurvival {
     this.timeSurvived = -1;
     this.nextUpdate = 0;
     this.enemies = [];
-    this.enemiesTotal = 30;
+    this.enemiesTotal = 50;
     this.enemiesAlive = null;
     this.difficulty = 1;
+    this.maxDifficulty = 10;
   }
 
   init() {
@@ -22,10 +23,11 @@ export default class TimeSurvival {
     if (this.enemiesAlive < this.enemiesTotal) this.spawnEnemy();
 
     // INCREMENT TIME SURVIVED
-    if (this.game.time.now > this.nextUpdate) {
+    if (this.game.time.now > this.nextUpdate && this.difficulty < this.maxDifficulty) {
       this.nextUpdate = this.game.time.now + 1000; // 1 second
-      this.difficulty = 1 + (this.timeSurvived / 100) + Math.floor(this.player.enemiesKilled / 100);
+      this.difficulty += (this.timeSurvived / 1000) + Math.floor(this.player.enemiesKilled / 100);
       this.timeSurvived++;
+      this.enemiesTotal = 50 / this.difficulty / 2;
     }
 
     // UPDATE ENEMIES ALIVE
@@ -53,9 +55,6 @@ export default class TimeSurvival {
   }
 
   spawnEnemy() {
-    this.enemies.push(new Zombie(1, Math.floor(Math.random() * this.difficulty + 1), this.game, this.player));
-
-    // Disabled for performance:
-    // this.physics.add.overlap(this.enemies[i].zombie, this.player);
+    this.enemies.push(new Zombie(1, Math.random() + 1 * this.difficulty - 1, this.game, this.player));
   }
 }
