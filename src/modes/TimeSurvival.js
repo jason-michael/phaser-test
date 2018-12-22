@@ -24,9 +24,8 @@ export default class TimeSurvival {
     // INCREMENT TIME SURVIVED
     if (this.game.time.now > this.nextUpdate) {
       this.nextUpdate = this.game.time.now + 1000; // 1 second
-      this.difficulty = 1 + (this.timeSurvived / 100);
+      this.difficulty = 1 + (this.timeSurvived / 100) + Math.floor(this.player.enemiesKilled / 100);
       this.timeSurvived++;
-      // this.enemiesTotal = parseInt(this.timeSurvived / 5);
     }
 
     // UPDATE ENEMIES ALIVE

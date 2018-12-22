@@ -92,6 +92,21 @@ export default new Phaser.Class({
     this.caption = this.add.text(16, 16, '', captionStyle);
     this.caption.setScrollFactor(0, 0);
     this.caption.setDepth(999);
+
+    this.input.keyboard.on('keydown_P', function () {
+
+      if (this.isPaused) {
+        this.isPaused = false;
+        this.scene.resume();
+        this.cameras.main.setZoom(1);
+        this.caption.setVisible(true);
+      } else {
+        this.isPaused = true;
+        this.scene.pause();
+        this.cameras.main.setZoom(1.25);
+        this.caption.setVisible(false);
+      }
+    }, this)
   },
 
   update: function () {
