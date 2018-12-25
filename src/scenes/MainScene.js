@@ -3,7 +3,7 @@ import Player from '../characters/Player';
 import EffectManager from '../effects/EffectManager';
 import TimeSurvival from '../modes/TimeSurvival';
 
-export default new Phaser.Class({
+export default MainScene = new Phaser.Class({
 
   Extends: Phaser.Scene,
 
