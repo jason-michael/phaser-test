@@ -7,9 +7,7 @@ export default class Gun {
     this.player = player;
     this.fireRate = fireRate;
     this.nextFire = 0;
-    this.bullets = this.game.physics.add.group({
-      defaultKey: 'bullet'
-    });
+    this.bullets = this.game.physics.add.group({ defaultKey: 'bullet' });
     this.input = new InputBindings(this.game);
     this.effects = new EffectsManager(this.game);
   }
