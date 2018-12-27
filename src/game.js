@@ -39,7 +39,7 @@ let config = {
       player: null,
       isPaused: false,
       inputBindings: null,
-      flashlight: null
+      flashlight: null,
     }
   }
 }
@@ -71,7 +71,7 @@ function preload() {
   this.load.image('bullet', 'assets/images/tanks/bullet.png');
 
   // EFFECTS
-  this.load.image('corpse', 'assets/images/blood/corpse.png');
+  this.load.image('corpse', ['assets/images/blood/corpse.png', 'assets/images/tanks/scorched_earth_n.png']);
 }
 
 function getRandomBackground(game) {
@@ -89,7 +89,6 @@ function create() {
 
   // PLAYER
   this.player = new Player(this);
-  this.player.sprite.setPipeline('Light2D');
 
   // GAME MODE
   this.gameMode = new TimeSurvival(this, this.player);
@@ -111,11 +110,14 @@ function create() {
 
   this.captionFormat = (
     'Time Survived:     %1s\n' +
-    'Difficulty:       x%2\n' +
+    'Difficulty:        %2\n' +
     'Enemies killed:    %3\n' +
     'Health:            %4\n' +
     'Shots fired:       %5\n' +
-    'Accuracy:          %6%\n'
+    'Accuracy:          %6%\n' +
+    '\nWASD to move\n' +
+    'LMB to shoot\n' +
+    'R to restart'
   );
   this.caption = this.add.text(16, 16, '', captionStyle);
   this.caption.setScrollFactor(0, 0);
@@ -137,7 +139,7 @@ function create() {
   }, this);
 
   this.flashlight = this.lights.addLight(0, 0, 400);
-  this.lights.enable().setAmbientColor(0x080808);
+  this.lights.enable().setAmbientColor(0x050505);
 }
 
 let i = 0;
@@ -157,7 +159,7 @@ function update() {
     this.gameMode.timeSurvived,
     parseFloat(this.gameMode.difficulty).toFixed(1),
     this.player.enemiesKilled,
-    this.player.health,
+    Math.floor(this.player.health / 10),
     this.player.shotsFired,
     Math.floor((this.player.shotsHit / this.player.shotsFired) * 100)
   ]));

@@ -13,6 +13,7 @@ export default class EffectManager {
     }
 
     let corpse = this.game.add.sprite(x, y, 'corpse').setDepth(-1);
+    corpse.setPipeline('Light2D')
     this.corpses.push(corpse);
   }
 
