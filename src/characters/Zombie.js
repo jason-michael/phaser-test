@@ -28,6 +28,8 @@ export default class Zombie {
 
     this.sprite.setScale(1 + (this.level / 10));
 
+    this.sprite.setPipeline('Light2D');
+
     this.game.physics.add.collider(this.sprite, this.player.sprite)
   }
 

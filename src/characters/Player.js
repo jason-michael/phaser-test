@@ -7,6 +7,9 @@ export default class Player {
     this.game = game;
     this.input = new InputBindings(game);
     this.speed = 150;
+    this.walkSpeed = 150;
+    this.sprintSpeed = 300;
+    this.health = 100;
 
     // STATS:
     this.shotsFired = 0;
@@ -44,11 +47,11 @@ export default class Player {
   sprint() {
     // SPRINT
     if (this.input.SHIFT.isDown) {
-      if (this.speed < 150) {
-        this.speed = 150;
+      if (this.speed < this.sprintSpeed) {
+        this.speed = this.sprintSpeed;
       }
     } else {
-      this.speed = 75;
+      this.speed = this.walkSpeed;
     }
   }
 

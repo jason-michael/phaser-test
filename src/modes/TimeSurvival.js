@@ -11,6 +11,8 @@ export default class TimeSurvival {
     this.enemiesAlive = null;
     this.difficulty = 1;
     this.maxDifficulty = 10;
+
+
   }
 
   init() {
