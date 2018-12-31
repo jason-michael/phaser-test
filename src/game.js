@@ -62,7 +62,7 @@ function preload() {
   this.load.image('player_mg', 'assets/images/topdown/player machinegun.gif');
 
   this.load.image('zombie1', ['assets/images/topdown/zombie.gif', 'assets/images/topdown/playerPistol_n.png']);
-  this.load.image('zombie2', 'assets/images/topdown/zombie 2.gif');
+  this.load.image('zombie2', ['assets/images/topdown/zombie 2.gif', 'assets/images/topdown/playerPistol_n.png']);
 
   // AUDIO
   this.load.audio('gunshot', 'assets/audio/gunshot.wav');

@@ -11,7 +11,9 @@ export default class TimeSurvival {
     this.enemiesAlive = null;
     this.difficulty = 1;
     this.maxDifficulty = 3;
-    this.zombies = this.game.physics.add.group({ defaultKey: 'zombie1' });
+    this.zombies = this.game.physics.add.group({
+      defaultKey: 'zombie1'
+    });
     this.zombieIndex = 0;
   }
 
@@ -40,7 +42,7 @@ export default class TimeSurvival {
       this.nextUpdate = this.game.time.now + 1000; // 1 second
       this.difficulty += (this.timeSurvived / 1000) + Math.floor(this.player.enemiesKilled / 100);
       this.timeSurvived++;
-      this.enemiesTotal = 10 * this.difficulty * 2;
+      this.enemiesTotal = 10 * this.difficulty * 5;
     }
 
     // UPDATE ENEMIES ALIVE
@@ -49,19 +51,20 @@ export default class TimeSurvival {
 
       if (this.enemies[i].isAlive) {
         this.enemiesAlive++;
-
-        // Disabled for performance.
-        // this.physics.collide(this.enemies[i].zombie, this.player, () => {
-        //     if (this.playerHealth >= 1) this.playerHealth -= 0.1;
-        // });
-
         this.enemies[i].update();
       }
     }
   }
 
   spawnEnemy() {
-    let zombie = new Zombie(this.zombieIndex, Math.random() + 1 * this.difficulty, this.game, this.player);
+    let zombie;
+    if (this.player.enemiesKilled % 12 === 0 && this.player.enemiesKilled > 20) {
+      // Sprinter
+      zombie = new Zombie(this.zombieIndex, 1, this.game, this.player, 300);
+    } else {
+      // Normal
+      zombie = new Zombie(this.zombieIndex, Math.random() + 1 * this.difficulty, this.game, this.player);
+    }
     this.enemies.push(zombie);
     this.zombies.add(zombie.sprite)
     this.zombieIndex++;

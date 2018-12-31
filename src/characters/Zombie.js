@@ -1,9 +1,9 @@
 import Phaser from '../phaser';
 
 export default class Zombie {
-  constructor(index, level, game, player) {
+  constructor(index, level, game, player, speed) {
     this.index = index;
-    this.level = level;
+    this.level = Math.floor(level);
     this.game = game;
     this.player = player;
     this.bullets = game.bullets;
@@ -11,7 +11,7 @@ export default class Zombie {
 
     this.isAlive = true;
     this.health = Math.floor(this.level * 1);
-    this.speed = (Math.random() + 1) * (this.level * 20);
+    this.speed = speed || (Math.random() + 1) * (this.level * 20);
 
     // Get a random spawn point on the map:
     const spawnLoc = this.game.physics.world.bounds.getRandomPoint();

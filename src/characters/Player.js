@@ -66,6 +66,8 @@ export default class Player {
     }
 
     if (this.game.input.activePointer.isDown && this.isAlive) this.gun.fire();
+
+    if (this.gun.fireRate > 50) this.gun.fireRate = 200 - (this.enemiesKilled);
   }
 
   addRotationInput() {
